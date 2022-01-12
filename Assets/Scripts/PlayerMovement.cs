@@ -17,6 +17,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float paddingTop = 5f;
     [SerializeField] float paddingBottom = 2f;
 
+    [Header("Shooting")]
+    Shooter shooter;
+
+    void Awake() 
+    {
+        shooter = GetComponent<Shooter>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,5 +58,13 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+
+    void OnFire(InputValue value) 
+    {
+        if (shooter != null)
+        {
+            shooter.isFiring = value.isPressed;
+        }
     }
 }
